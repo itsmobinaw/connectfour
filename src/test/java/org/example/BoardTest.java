@@ -19,5 +19,11 @@ class BoardTest {
         // چک می‌کنیم که تعداد ردیف‌ها دقیقاً ۶ و ستون‌ها ۷ باشه
         assertEquals(6, board.getRows(), "Board should have 6 rows");
         assertEquals(7, board.getColumns(), "Board should have 7 columns");
+    }@Test
+    void testNewBoardIsEmpty() {
+        Board board = new Board();
+
+        // Check if the bottom-left cell is empty (null)
+        assertNull(board.getCell(0, 0), "Initial board cells should be empty");
     }
 }
