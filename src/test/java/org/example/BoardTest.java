@@ -89,5 +89,30 @@ class BoardTest {
 
         // We expect the checkWinner method to return true for BLUE
         assertTrue(board.checkWinner(Player.BLUE), "Blue should win with 4 pieces in a vertical column");
+    }@Test
+    void testDiagonalWin() {
+        Board board = new Board();
+
+        // Setup a diagonal win for PINK (bottom-left to top-right)
+        // Column 0: 1 Pink
+        board.dropPiece(0, Player.PINK);
+
+        // Column 1: 1 Blue, then 1 Pink
+        board.dropPiece(1, Player.BLUE);
+        board.dropPiece(1, Player.PINK);
+
+        // Column 2: 2 Blues, then 1 Pink
+        board.dropPiece(2, Player.BLUE);
+        board.dropPiece(2, Player.BLUE);
+        board.dropPiece(2, Player.PINK);
+
+        // Column 3: 3 Blues, then 1 Pink
+        board.dropPiece(3, Player.BLUE);
+        board.dropPiece(3, Player.BLUE);
+        board.dropPiece(3, Player.BLUE);
+        board.dropPiece(3, Player.PINK);
+
+        // We expect checkWinner to return true for PINK
+        assertTrue(board.checkWinner(Player.PINK), "Pink should win with a diagonal line (/)");
     }
 }
