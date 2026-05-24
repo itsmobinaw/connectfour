@@ -37,4 +37,21 @@ public class Board {
         // If the loop finishes without finding an empty spot, the column is full!
         throw new RuntimeException("Column is full!");
     }
+
+    // Check if the specified player has won the game
+    public boolean checkWinner(Player player) {
+        // Check for horizontal wins
+        // We only loop up to columns - 3 to avoid IndexOutOfBounds error
+        for (int row = 0; row < rows; row++) {
+            for (int col = 0; col < columns - 3; col++) {
+                if (grid[row][col] == player &&
+                        grid[row][col + 1] == player &&
+                        grid[row][col + 2] == player &&
+                        grid[row][col + 3] == player) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }

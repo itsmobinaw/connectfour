@@ -65,4 +65,17 @@ class BoardTest {
             board.dropPiece(0, Player.BLUE);
         }, "Dropping a piece in a full column should throw an exception");
     }
+    @Test
+    void testHorizontalWin() {
+        Board board = new Board();
+
+        // Player PINK drops 4 pieces in consecutive columns (0, 1, 2, 3)
+        board.dropPiece(0, Player.PINK);
+        board.dropPiece(1, Player.PINK);
+        board.dropPiece(2, Player.PINK);
+        board.dropPiece(3, Player.PINK);
+
+        // We expect the checkWinner method to return true for PINK
+        assertTrue(board.checkWinner(Player.PINK), "Pink should win with 4 pieces in a horizontal row");
+    }
 }
