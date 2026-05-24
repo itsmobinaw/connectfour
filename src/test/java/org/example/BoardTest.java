@@ -36,5 +36,19 @@ class BoardTest {
         // حالا انتظار داریم مهره دقیقاً در کف زمین، یعنی ردیف 0 قرار بگیره
         assertEquals(Player.PINK, board.getCell(0, 0), "The piece should fall to the bottom row (row 0)");
     }
+    @Test
+    void testDropMultiplePiecesInSameColumn() {
+        Board board = new Board();
+
+        // Drop first piece (Pink) in column 0
+        board.dropPiece(0, Player.PINK);
+        // Drop second piece (Blue) in the SAME column
+        board.dropPiece(0, Player.BLUE);
+
+        // The first piece should be at the bottom (row 0)
+        assertEquals(Player.PINK, board.getCell(0, 0), "First piece should be at row 0");
+        // The second piece should be right above it (row 1)
+        assertEquals(Player.BLUE, board.getCell(1, 0), "Second piece should be at row 1");
+    }
 
 }
