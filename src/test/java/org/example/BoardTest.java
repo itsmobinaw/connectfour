@@ -26,4 +26,15 @@ class BoardTest {
         // Check if the bottom-left cell is empty (null)
         assertNull(board.getCell(0, 0), "Initial board cells should be empty");
     }
+    @Test
+    void testDropPieceFallsToBottom() {
+        Board board = new Board();
+
+        // بازیکن صورتی یک مهره در ستون 0 می‌اندازد
+        board.dropPiece(0, Player.PINK);
+
+        // حالا انتظار داریم مهره دقیقاً در کف زمین، یعنی ردیف 0 قرار بگیره
+        assertEquals(Player.PINK, board.getCell(0, 0), "The piece should fall to the bottom row (row 0)");
+    }
+
 }

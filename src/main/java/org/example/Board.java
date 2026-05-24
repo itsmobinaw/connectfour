@@ -23,4 +23,15 @@ public class Board {
     public Player getCell(int row, int col) {
         return grid[row][col];
     }
+
+    // Drop a piece into the specified column
+    public void dropPiece(int col, Player player) {
+        // Start from the bottom (row 0) and move up to find the first empty spot
+        for (int row = 0; row < rows; row++) {
+            if (grid[row][col] == null) {
+                grid[row][col] = player;
+                break; // Stop searching once the piece is placed
+            }
+        }
+    }
 }
