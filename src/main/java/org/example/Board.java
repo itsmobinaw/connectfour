@@ -30,8 +30,11 @@ public class Board {
         for (int row = 0; row < rows; row++) {
             if (grid[row][col] == null) {
                 grid[row][col] = player;
-                break; // Stop searching once the piece is placed
+                return; // Stop searching and exit the method once the piece is placed
             }
         }
+
+        // If the loop finishes without finding an empty spot, the column is full!
+        throw new RuntimeException("Column is full!");
     }
 }

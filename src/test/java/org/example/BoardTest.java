@@ -50,5 +50,19 @@ class BoardTest {
         // The second piece should be right above it (row 1)
         assertEquals(Player.BLUE, board.getCell(1, 0), "Second piece should be at row 1");
     }
+    @Test
+    void testDropPieceInFullColumnThrowsException() {
+        Board board = new Board();
 
+        // Fill column 0 with 6 pieces (the maximum capacity)
+        for (int i = 0; i < 6; i++) {
+            board.dropPiece(0, Player.PINK);
+        }
+
+        // Now try to drop a 7th piece in the same column.
+        // We expect a RuntimeException to be thrown.
+        assertThrows(RuntimeException.class, () -> {
+            board.dropPiece(0, Player.BLUE);
+        }, "Dropping a piece in a full column should throw an exception");
+    }
 }
