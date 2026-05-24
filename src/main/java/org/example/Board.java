@@ -40,8 +40,8 @@ public class Board {
 
     // Check if the specified player has won the game
     public boolean checkWinner(Player player) {
-        // Check for horizontal wins
-        // We only loop up to columns - 3 to avoid IndexOutOfBounds error
+        // 1. Check for horizontal wins
+        // We loop up to columns - 3 to avoid IndexOutOfBounds error
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < columns - 3; col++) {
                 if (grid[row][col] == player &&
@@ -52,6 +52,20 @@ public class Board {
                 }
             }
         }
+
+        // 2. Check for vertical wins
+        // We loop up to rows - 3 to avoid IndexOutOfBounds error
+        for (int col = 0; col < columns; col++) {
+            for (int row = 0; row < rows - 3; row++) {
+                if (grid[row][col] == player &&
+                        grid[row + 1][col] == player &&
+                        grid[row + 2][col] == player &&
+                        grid[row + 3][col] == player) {
+                    return true;
+                }
+            }
+        }
+
         return false;
     }
 }

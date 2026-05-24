@@ -77,5 +77,17 @@ class BoardTest {
 
         // We expect the checkWinner method to return true for PINK
         assertTrue(board.checkWinner(Player.PINK), "Pink should win with 4 pieces in a horizontal row");
+    }@Test
+    void testVerticalWin() {
+        Board board = new Board();
+
+        // Player BLUE drops 4 pieces in the same column (column 0)
+        board.dropPiece(0, Player.BLUE);
+        board.dropPiece(0, Player.BLUE);
+        board.dropPiece(0, Player.BLUE);
+        board.dropPiece(0, Player.BLUE);
+
+        // We expect the checkWinner method to return true for BLUE
+        assertTrue(board.checkWinner(Player.BLUE), "Blue should win with 4 pieces in a vertical column");
     }
 }
