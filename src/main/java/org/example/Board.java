@@ -8,7 +8,7 @@ public class Board {
     private final int columns = 7;
     private final Player[][] grid;
 
-    // ANSI color codes for the board
+    // ANSI color codes for the board pieces
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_PINK = "\u001B[35m"; // Magenta for Pink
     private static final String ANSI_BLUE = "\u001B[34m"; // Blue for Blue
