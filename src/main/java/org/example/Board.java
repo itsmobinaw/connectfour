@@ -8,6 +8,11 @@ public class Board {
     private final int columns = 7;
     private final Player[][] grid;
 
+    // ANSI color codes for the board
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_PINK = "\u001B[35m"; // Magenta for Pink
+    private static final String ANSI_BLUE = "\u001B[34m"; // Blue for Blue
+
     /**
      * Constructor to initialize an empty game board.
      */
@@ -103,7 +108,7 @@ public class Board {
     }
 
     /**
-     * Prints the current state of the board to the console.
+     * Prints the current state of the board to the console with colors.
      */
     public void printBoard() {
         System.out.println(" 0 1 2 3 4 5 6");
@@ -114,9 +119,11 @@ public class Board {
                 if (grid[row][col] == null) {
                     System.out.print(".|"); // Empty cell
                 } else if (grid[row][col] == Player.PINK) {
-                    System.out.print("P|"); // Pink player
+                    // Prints a colored 'P'
+                    System.out.print(ANSI_PINK + "P" + ANSI_RESET + "|");
                 } else {
-                    System.out.print("B|"); // Blue player
+                    // Prints a colored 'B'
+                    System.out.print(ANSI_BLUE + "B" + ANSI_RESET + "|");
                 }
             }
             System.out.println();
