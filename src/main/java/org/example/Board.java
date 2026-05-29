@@ -108,7 +108,7 @@ public class Board {
     }
 
     /**
-     * Prints the current state of the board to the console with colors.
+     * Prints the current state of the board to the console with colors and tokens.
      */
     public void printBoard() {
         System.out.println(" 0 1 2 3 4 5 6");
@@ -117,13 +117,14 @@ public class Board {
             System.out.print("|");
             for (int col = 0; col < columns; col++) {
                 if (grid[row][col] == null) {
-                    System.out.print(".|"); // Empty cell
+                    // Empty cell shown as a small dot
+                    System.out.print(".|");
                 } else if (grid[row][col] == Player.PINK) {
-                    // Prints a colored 'P'
-                    System.out.print(ANSI_PINK + "P" + ANSI_RESET + "|");
+                    // Prints a colored circular token for Pink
+                    System.out.print(ANSI_PINK + "●" + ANSI_RESET + "|");
                 } else {
-                    // Prints a colored 'B'
-                    System.out.print(ANSI_BLUE + "B" + ANSI_RESET + "|");
+                    // Prints a colored circular token for Blue
+                    System.out.print(ANSI_BLUE + "●" + ANSI_RESET + "|");
                 }
             }
             System.out.println();
