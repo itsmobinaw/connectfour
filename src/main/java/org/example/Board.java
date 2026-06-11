@@ -3,15 +3,14 @@ package org.example;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Represents the game board and handles core game logic.
+ * This class now strictly follows the Single Responsibility Principle (SRP).
+ */
 public class Board {
     private final int rows = 6;
     private final int columns = 7;
     private final Player[][] grid;
-
-    // ANSI color codes for the board pieces
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String ANSI_PINK = "\u001B[35m"; // Magenta for Pink
-    private static final String ANSI_BLUE = "\u001B[34m"; // Blue for Blue
 
     /**
      * Constructor to initialize an empty game board.
@@ -43,13 +42,11 @@ public class Board {
                 return;
             }
         }
-        // If no empty slot is found in the column
         throw new RuntimeException("Column is full!");
     }
 
     /**
      * Scans the entire board to check if the specified player has 4 pieces in a row.
-     * Checks horizontal, vertical, and both diagonal directions.
      */
     public boolean checkWinner(Player player) {
         // 1. Check Horizontal
@@ -100,35 +97,9 @@ public class Board {
     }
 
     /**
-     * Uses Java Stream API to check if the top row is completely full,
-     * indicating a draw if no player has won yet.
+     * Uses Java Stream API to check if the top row is completely full.
      */
     public boolean isBoardFull() {
         return Arrays.stream(grid[rows - 1]).noneMatch(Objects::isNull);
-    }
-
-    /**
-     * Prints the current state of the board to the console with colors and tokens.
-     */
-    public void printBoard() {
-        System.out.println(" 0 1 2 3 4 5 6");
-        System.out.println("---------------");
-        for (int row = rows - 1; row >= 0; row--) {
-            System.out.print("|");
-            for (int col = 0; col < columns; col++) {
-                if (grid[row][col] == null) {
-                    // Empty cell shown as a small dot
-                    System.out.print(".|");
-                } else if (grid[row][col] == Player.PINK) {
-                    // Prints a colored circular token for Pink
-                    System.out.print(ANSI_PINK + "●" + ANSI_RESET + "|");
-                } else {
-                    // Prints a colored circular token for Blue
-                    System.out.print(ANSI_BLUE + "●" + ANSI_RESET + "|");
-                }
-            }
-            System.out.println();
-        }
-        System.out.println("---------------");
     }
 }

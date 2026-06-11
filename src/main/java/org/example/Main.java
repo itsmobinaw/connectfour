@@ -3,15 +3,18 @@ package org.example;
 import java.util.Scanner;
 
 public class Main {
-    // ANSI color codes to make the Live Demo visually appealing!
+    // UI Colors
     public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_PINK = "\u001B[35m"; // Magenta used for Pink
+    public static final String ANSI_PINK = "\u001B[35m";
     public static final String ANSI_BLUE = "\u001B[34m";
     public static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_GREEN = "\u001B[32m";
 
     public static void main(String[] args) {
+        // Initialize game logic and UI printer separately (SOLID Principle applied)
         Board board = new Board();
+        ConsolePrinter printer = new ConsolePrinter();
+
         Scanner scanner = new Scanner(System.in);
         Player currentPlayer = Player.PINK;
         boolean gameActive = true;
@@ -20,7 +23,8 @@ public class Main {
 
         // Game loop runs until someone wins or the board is completely full
         while (gameActive && !board.isBoardFull()) {
-            board.printBoard();
+            // Use the new printer class to show the board
+            printer.printBoard(board);
 
             // Determine the text color based on the current player
             String playerColor = (currentPlayer == Player.PINK) ? ANSI_PINK : ANSI_BLUE;
@@ -42,7 +46,7 @@ public class Main {
 
                 // Check if this move resulted in a win
                 if (board.checkWinner(currentPlayer)) {
-                    board.printBoard();
+                    printer.printBoard(board);
                     System.out.println(playerColor + "🎉 CONGRATULATIONS! Player " + currentPlayer + " WINS! 🎉" + ANSI_RESET);
                     gameActive = false;
                 } else {
@@ -61,7 +65,7 @@ public class Main {
 
         // If the loop ends and no one has won, it's a draw
         if (board.isBoardFull() && gameActive) {
-            board.printBoard();
+            printer.printBoard(board);
             System.out.println(ANSI_GREEN + "It's a draw! The board is full." + ANSI_RESET);
         }
 
