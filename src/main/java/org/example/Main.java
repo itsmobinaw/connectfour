@@ -13,6 +13,8 @@ public class Main {
     public static void main(String[] args) {
         // Initialize game logic and UI printer separately (SOLID Principle applied)
         Board board = new Board();
+        GameGUI gui = new GameGUI(board);
+        gui.display();
         ConsolePrinter printer = new ConsolePrinter();
 
         Scanner scanner = new Scanner(System.in);
