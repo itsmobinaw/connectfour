@@ -29,8 +29,10 @@ public class GameGUI extends JFrame {
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
+        // Initialize all UI sections
         initializeButtons();
         initializeGrid();
+        initializeRestartButton(); // Added the Restart button at the bottom
     }
 
     /**
@@ -49,7 +51,6 @@ public class GameGUI extends JFrame {
             button.setFont(new Font("Arial", Font.BOLD, 14));
             button.setFocusable(false);
 
-            // Step 4: Add an Action Listener to handle button clicks
             final int colIndex = c;
             button.addActionListener(e -> handleColumnClick(colIndex));
 
@@ -83,6 +84,27 @@ public class GameGUI extends JFrame {
         }
 
         add(gridPanel, BorderLayout.CENTER);
+    }
+
+    /**
+     * Creates a restart button at the bottom of the window.
+     */
+    private void initializeRestartButton() {
+        JButton restartButton = new JButton("Restart Game");
+        restartButton.setFont(new Font("Arial", Font.BOLD, 16));
+        restartButton.setBackground(Color.ORANGE);
+        restartButton.setFocusable(false);
+
+        // When clicked, reset the board logic and update the UI
+        restartButton.addActionListener(e -> {
+            board.resetBoard(); // Clear logic
+            gameActive = true; // Reactivate game
+            currentPlayer = Player.PINK; // Pink always starts
+            updateBoardUI(); // Clear colors from the screen
+        });
+
+        // Add to the bottom (SOUTH) of the window
+        add(restartButton, BorderLayout.SOUTH);
     }
 
     /**
@@ -131,6 +153,8 @@ public class GameGUI extends JFrame {
                     cellPanels[r][c].setBackground(Color.MAGENTA); // Magenta visually represents Pink
                 } else if (piece == Player.BLUE) {
                     cellPanels[r][c].setBackground(Color.BLUE);
+                } else {
+                    cellPanels[r][c].setBackground(Color.WHITE); // Reset to empty color for restart
                 }
             }
         }
