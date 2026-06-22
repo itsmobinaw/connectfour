@@ -1,6 +1,6 @@
 # 🎮 Connect Four (Java GUI & Console Game)
 
-ciao! 👋 Welcome to my Connect Four project. I built this for my Software Engineering class to practice writing clean, testable, and object-oriented Java code.
+ciao! 👋 Welcome to my Connect Four project. I built this for my Software development class to practice writing clean, testable, and object-oriented Java code.
 
 ## 🛠️ What I focused on in this project:
 
